@@ -7,6 +7,9 @@ on early-init
     # Set the security context of /postinstall if present.
     restorecon /postinstall
 
+    # ueventd wants to write to /acct
+    mount cgroup none /acct cpuacct
+    mkdir /acct/uid
     start ueventd
 
     setprop sys.usb.configfs 1
